@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour, IHitable
 
     public int armor;
     public int hp;
+
+    public GameObject drop;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -31,6 +33,10 @@ public class EnemyController : MonoBehaviour, IHitable
             {
                 FaceTarget();
             }
+        }
+        if (hp <= 0)
+        {
+            Die();
         }
     }
 
@@ -54,5 +60,11 @@ public class EnemyController : MonoBehaviour, IHitable
         {
             hp -= damage;
         }
+    }
+
+    public void Die()
+    {
+        Instantiate(drop, this.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }

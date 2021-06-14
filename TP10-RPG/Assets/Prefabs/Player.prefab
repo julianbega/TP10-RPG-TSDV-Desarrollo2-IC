@@ -237,10 +237,10 @@ MonoBehaviour:
   currentHealth: 0
   maxStamina: 100
   armor:
-    baseValue: 0
+    baseValue: 1
   damage:
-    baseValue: 0
+    baseValue: 5
   attackSpeed:
-    baseValue: 0
+    baseValue: 1
   miningRate:
-    baseValue: 0
+    baseValue: 1
