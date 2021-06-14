@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour, IHitable
 {
+    public GameObject cast;
+    [SerializeField]private Camera mainCamera;
+    [SerializeField] private LayerMask layer;
     CharacterController controller;
     PlayerStats stats;
     Vector3 playerVelocity;
@@ -28,19 +31,20 @@ public class PlayerController : MonoBehaviour, IHitable
         {
             gameObject.transform.forward = move;
         }
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             PickUp();
         }
-
         if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("ataca");
             Attack();
         }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            StartCoroutine("MeteorCast");
+        }
     }
-
     void Attack()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position + (attackRadius*transform.forward), attackRadius);
@@ -74,6 +78,21 @@ public class PlayerController : MonoBehaviour, IHitable
         {
             stats.currentHealth -= damage;
         }
+    }
+    IEnumerator MeteorCast()
+    {
+        GameObject castspell;
+        Debug.Log("castea lluvia de metoritos");
+        castspell = Instantiate(cast);
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycasthit,float.MaxValue,layer))
+        {
+            raycasthit.point = new Vector3(raycasthit.point.x, raycasthit.point.y + 0.2f, raycasthit.point.z);
+            castspell.transform.position = raycasthit.point;
+        }
+        yield return new WaitForSeconds(2);
+        Destroy(castspell);
+        //castea el meteorito
     }
 }
 
