@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IHitable
 {
     public float lookRadius = 10f;
     public float speed = 1;
     GameObject target;
     NavMeshAgent agent;
+
+    public int armor;
+    public int hp;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -42,5 +45,14 @@ public class EnemyController : MonoBehaviour
         Vector3 direction = (target.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    public void takeDamage(int damage)
+    {
+        damage = damage - armor;
+        if (damage > 0)
+        {
+            hp -= damage;
+        }
     }
 }

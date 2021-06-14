@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour, IHitable
 
         if (Input.GetButtonDown("Fire1"))
         {
+            Debug.Log("ataca");
             Attack();
         }
     }

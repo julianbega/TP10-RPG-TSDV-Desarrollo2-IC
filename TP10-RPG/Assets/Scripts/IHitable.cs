@@ -1,4 +1,4 @@
-﻿public interface IHitable
+﻿ public interface IHitable
 {
     void takeDamage(int damage);
 }
