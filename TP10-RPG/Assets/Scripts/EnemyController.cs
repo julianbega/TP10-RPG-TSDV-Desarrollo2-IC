@@ -5,15 +5,20 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour, IHitable
 {
+    [Header("Movement")]
     public float lookRadius = 10f;
     public float speed = 1;
     GameObject target;
     NavMeshAgent agent;
 
+    [Header("Stats")]
     public int armor;
     public int hp;
 
+    [Header("Drop")]
+    [SerializeField] float dropRate = 25f;
     public GameObject drop;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -64,7 +69,19 @@ public class EnemyController : MonoBehaviour, IHitable
 
     public void Die()
     {
-        Instantiate(drop, this.transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+        int chance = UnityEngine.Random.Range(1, 101);
+        if (dropRate > chance)
+        {
+            GameplayManager gm = GameplayManager.GetInstance();
+            int itemID = gm.GetRandomItemID();
+            int amount = 1;
+            if(gm.GetItemFromID(itemID).maxStack > 1)
+            {
+                amount = Random.Range(1, gm.GetItemFromID(itemID).maxStack + 1);
+            }
+            GameObject go = Instantiate(gm.GetItemFromID(itemID).worldPrefab, transform.position, Quaternion.identity);
+            go.GetComponent<worldItem>().SetItem(itemID, amount);
+        }
+        Destroy(gameObject);
     }
 }

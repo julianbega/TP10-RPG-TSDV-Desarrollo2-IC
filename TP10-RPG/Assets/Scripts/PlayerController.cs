@@ -82,7 +82,11 @@ public class PlayerController : MonoBehaviour, IHitable
             IPickable pickable = hitCollider.GetComponent<IPickable>();
             if(pickable != null)
             {
-                // Add to Inventory;
+                Slot item = pickable.PickUp();
+                if(GetComponent<Inventory>().AddNewItem(item.ID, item.amount))
+                {
+                    Destroy(hitCollider.gameObject);
+                }
             }
         }
     }
