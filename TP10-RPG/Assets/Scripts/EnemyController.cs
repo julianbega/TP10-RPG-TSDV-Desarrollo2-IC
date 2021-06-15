@@ -19,6 +19,18 @@ public class EnemyController : MonoBehaviour, IHitable
     [SerializeField] float dropRate = 25f;
     public GameObject drop;
 
+    [Header("Animation")]
+    [SerializeField] float deathTimer = 5f;
+    Animator anim;
+
+    Collider col;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        col = GetComponent<Collider>();
+    }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -28,20 +40,25 @@ public class EnemyController : MonoBehaviour, IHitable
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(target.transform.position, this.transform.position);
-
-        if (distance < lookRadius)
+        if (agent.enabled)
         {
-            agent.SetDestination(target.transform.position);
+            float distance = Vector3.Distance(target.transform.position, this.transform.position);
 
-            if (distance <= agent.stoppingDistance)
+            if (distance < lookRadius)
             {
-                FaceTarget();
+                agent.SetDestination(target.transform.position);
+
+                anim.SetFloat("MoveSpeed", 1);
+
+                if (distance <= agent.stoppingDistance)
+                {
+                    FaceTarget();
+                }
             }
-        }
-        if (hp <= 0)
-        {
-            Die();
+            else
+            {
+                anim.SetFloat("MoveSpeed", 0);
+            }
         }
     }
 
@@ -64,6 +81,10 @@ public class EnemyController : MonoBehaviour, IHitable
         if (damage > 0)
         {
             hp -= damage;
+            if (hp <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -82,6 +103,9 @@ public class EnemyController : MonoBehaviour, IHitable
             GameObject go = Instantiate(gm.GetItemFromID(itemID).worldPrefab, transform.position, Quaternion.identity);
             go.GetComponent<worldItem>().SetItem(itemID, amount);
         }
-        Destroy(gameObject);
+        anim.SetTrigger("Die");
+        agent.enabled = false;
+        col.enabled = false;
+        Destroy(gameObject, deathTimer);
     }
 }
