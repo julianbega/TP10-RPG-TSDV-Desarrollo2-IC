@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour, IHitable
 
     public Action OnInventoryOpen;
 
+    bool pausedInput = false;
+
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -28,30 +30,36 @@ public class PlayerController : MonoBehaviour, IHitable
 
     private void Update()
     {
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        if (!pausedInput)
+        {
+            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            controller.Move(move * Time.deltaTime * playerSpeed);
 
-        if (move != Vector3.zero)
-        {
-            gameObject.transform.forward = move;
+            if (move != Vector3.zero)
+            {
+                gameObject.transform.forward = move;
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickUp();
+            }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Debug.Log("ataca");
+                Attack();
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                StartCoroutine("MeteorCast");
+            }
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            PickUp();
-        }
+
         if (Input.GetKeyDown(KeyCode.I))
         {
+            pausedInput = !pausedInput;
             OnInventoryOpen();
         }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Debug.Log("ataca");
-            Attack();
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            StartCoroutine("MeteorCast");
-        }
+
     }
     void Attack()
     {

@@ -44,7 +44,7 @@ public class UiInventory : MonoBehaviour
         inventoryPanel.SetActive(open);
         if (open)
         {
-            ReStartInventory();
+            Invoke(nameof(ReStartInventory), 0);       // ver como iniciar despues de la lógica de inventario.
             for (int i = 0; i <= (int)Inventory.SortType.Level; i++)
             {
                 sortBDrop.options[i].text = nameSortBy[i];
