@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 5e78eef8919dc1a479983f78eab402f3
+guid: 5ca485c200c5baf42bce7ab8d80d6713
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
       74: 8993902097722301239
-    second: Unreal Take
+    second: Die Gameplay
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,19 +35,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Unreal Take
+      name: Die Gameplay
       takeName: Unreal Take
       internalID: 0
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
