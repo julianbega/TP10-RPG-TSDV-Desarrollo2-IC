@@ -15,6 +15,8 @@ MonoBehaviour:
   itemName: Dragoon Armor
   icon: {fileID: 21300000, guid: bb5ef0d0cdff53944897f7e586e7afcf, type: 3}
   mesh: {fileID: -4221278872864060035, guid: b841e0568d511ac4688b781873a09674, type: 3}
+  worldPrefab: {fileID: 6031716113068538444, guid: adb066c1aa64c604d905059424a415ef,
+    type: 3}
   maxStack: 1
   level: 15
   weight: 80
