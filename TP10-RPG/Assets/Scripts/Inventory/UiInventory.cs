@@ -31,6 +31,7 @@ public class UiInventory : MonoBehaviour
     public bool secondParameter;
     private float mouseCurrentPosX;
     private float playerCurrentRotY;
+    bool restart = false;
 
     private void Awake()
     {
@@ -44,7 +45,7 @@ public class UiInventory : MonoBehaviour
         inventoryPanel.SetActive(open);
         if (open)
         {
-            Invoke(nameof(ReStartInventory), 0);       // ver como iniciar despues de la lógica de inventario.
+            Invoke(nameof(StartInventory), 0);       // ver como iniciar despues de la lógica de inventario.
             for (int i = 0; i <= (int)Inventory.SortType.Level; i++)
             {
                 sortBDrop.options[i].text = nameSortBy[i];
@@ -52,9 +53,13 @@ public class UiInventory : MonoBehaviour
         }
     }
 
-    void ReStartInventory()
+    void StartInventory()
     {
-        CreateButtonsSlots();
+        if (!restart)
+        {
+            CreateButtonsSlots();
+            restart = true;
+        }
         ResizeContent();
         RefreshAllButtons();
     }
