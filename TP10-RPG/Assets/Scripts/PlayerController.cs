@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour, IHitable
 {
     public GameObject cast;
-    [SerializeField]private Camera mainCamera;
+    public GameObject meteorprefab;
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private LayerMask layer;
     CharacterController controller;
     PlayerStats stats;
@@ -91,6 +92,8 @@ public class PlayerController : MonoBehaviour, IHitable
             castspell.transform.position = raycasthit.point;
         }
         yield return new WaitForSeconds(2);
+        GameObject meteor;
+        meteor= Instantiate(meteorprefab, new Vector3(castspell.transform.position.x, castspell.transform.position.y, castspell.transform.position.z), Quaternion.identity);
         Destroy(castspell);
         //castea el meteorito
     }

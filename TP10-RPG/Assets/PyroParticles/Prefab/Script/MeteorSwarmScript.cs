@@ -199,7 +199,7 @@ namespace DigitalRuby.PyroParticles
             MeteorShrapnelParticleSystem.transform.position = col.contacts[0].point;
             MeteorShrapnelParticleSystem.Emit(UnityEngine.Random.Range(10, 20));
 
-            PlayCollisionSound(obj);
+            //PlayCollisionSound(obj);
 
             GameObject.Destroy(r);
 

@@ -4729,7 +4729,7 @@ Transform:
   m_GameObject: {fileID: 165786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 466070}
   - {fileID: 414434}
@@ -4774,7 +4774,7 @@ MonoBehaviour:
   - {fileID: 4300002, guid: 371ed6c0dd75f6a4ebd1dfcb0b578b46, type: 3}
   - {fileID: 4300000, guid: 371ed6c0dd75f6a4ebd1dfcb0b578b46, type: 3}
   - {fileID: 4300010, guid: 371ed6c0dd75f6a4ebd1dfcb0b578b46, type: 3}
-  DestinationRadius: 25
+  DestinationRadius: 5
   Source: {x: 50, y: 100, z: -50}
   SourceRadius: 10
   TimeToImpact: 1

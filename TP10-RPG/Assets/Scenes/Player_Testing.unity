@@ -427,6 +427,11 @@ PrefabInstance:
       propertyPath: layer.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 135671473819893445, guid: 5b05c66f9422f5041b007a7312362edc,
+        type: 3}
+      propertyPath: meteorprefab
+      value: 
+      objectReference: {fileID: 165786, guid: d7b50f004cdc74b409188d8b822292fc, type: 3}
     - target: {fileID: 135671473819893447, guid: 5b05c66f9422f5041b007a7312362edc,
         type: 3}
       propertyPath: m_RootOrder
