@@ -9,6 +9,7 @@ public abstract class Item : ScriptableObject
     public Sprite icon;
     public Mesh mesh;
     public GameObject worldPrefab;
+    public Material worldMaterial;
     public int maxStack = 1;
     public int level = 1;
     public float weight;

@@ -100,7 +100,7 @@ public class EnemyController : MonoBehaviour, IHitable
             {
                 amount = Random.Range(1, gm.GetItemFromID(itemID).maxStack + 1);
             }
-            GameObject go = Instantiate(gm.GetItemFromID(itemID).worldPrefab, transform.position, Quaternion.identity);
+            GameObject go = Instantiate(gm.GetDropTemplate(), transform.position, Quaternion.identity);
             go.GetComponent<worldItem>().SetItem(itemID, amount);
         }
         anim.SetTrigger("Die");

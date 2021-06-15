@@ -17,6 +17,7 @@ MonoBehaviour:
   mesh: {fileID: -7719265479331120241, guid: c7f1e075937e3894d9fb5258a92900f3, type: 3}
   worldPrefab: {fileID: 6031716113068538444, guid: adb066c1aa64c604d905059424a415ef,
     type: 3}
+  worldMaterial: {fileID: 2100000, guid: 79f5fd36b579b3442b77e35547e7f869, type: 2}
   maxStack: 1
   level: 1
   weight: 100

@@ -488,6 +488,12 @@ PrefabInstance:
       objectReference: {fileID: 672607469}
     - target: {fileID: 8501257826044609898, guid: 3be2e9dcf62feea4f981469c73127585,
         type: 3}
+      propertyPath: dropTemplate
+      value: 
+      objectReference: {fileID: 6031716113068538444, guid: adb066c1aa64c604d905059424a415ef,
+        type: 3}
+    - target: {fileID: 8501257826044609898, guid: 3be2e9dcf62feea4f981469c73127585,
+        type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1330880662}
@@ -884,6 +890,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8081657481473924974, guid: 6244c6f88d8818245ae5a61aebd09272,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -42.899902
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081657481736098918, guid: 6244c6f88d8818245ae5a61aebd09272,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.32080078
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6244c6f88d8818245ae5a61aebd09272, type: 3}
 --- !u!1 &1864527701
@@ -963,6 +979,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710980483738283770, guid: 437c85a088c708c448a99c3ae01d7905,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2710980483738283774, guid: 437c85a088c708c448a99c3ae01d7905,
         type: 3}

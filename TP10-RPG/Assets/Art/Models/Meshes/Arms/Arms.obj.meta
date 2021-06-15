@@ -3,7 +3,107 @@ guid: c7f1e075937e3894d9fb5258a92900f3
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Arrow01SM_27Mat
+    second: {fileID: 2100000, guid: 12be338d828e49f45974a319f6ecd267, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Arrow02SM_29Mat
+    second: {fileID: 2100000, guid: 08afe7f8547b237469badb4ce051eb2d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Axe01SM_31Mat
+    second: {fileID: 2100000, guid: fe9c292d5489e50458650d33e2725b79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Backpack01SM_33Mat
+    second: {fileID: 2100000, guid: ed31188ca1f2b824e8598bb910b9d8bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Backpack02SM_35Mat
+    second: {fileID: 2100000, guid: fa8622aaa6077704da781b18fa57a480, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Backpack03SM_37Mat
+    second: {fileID: 2100000, guid: 1f9bf5fa999a9c44ea34a068e06bdb86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Bow01SM_39Mat
+    second: {fileID: 2100000, guid: e4ceeec495ee8954f8b663d8e73f1e4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Bow02SM_41Mat
+    second: {fileID: 2100000, guid: 64c6578037989b44fa12bdb5f132bdbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Hammer01SM_43Mat
+    second: {fileID: 2100000, guid: 40844cedb8cbafa43b7ca04995074da3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Shield01SM_45Mat
+    second: {fileID: 2100000, guid: 6ff59544843582e43b46e51e20a97c0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Shield02SM_47Mat
+    second: {fileID: 2100000, guid: eaf97a0b01ffceb44afc2bdc7cd4a41c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Shield03SM_49Mat
+    second: {fileID: 2100000, guid: 5c642d125699bde468811a75ce83d7a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Shield04SM_51Mat
+    second: {fileID: 2100000, guid: 10866f2c887eaca45bf48247c3b357be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Shield05SM_53Mat
+    second: {fileID: 2100000, guid: 67e05d9b67dc85b4292b63c2c05c843f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Sword01SM_55Mat
+    second: {fileID: 2100000, guid: eea83ae20fd36ff4bb87d56abcb57ff0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Sword02SM_57Mat
+    second: {fileID: 2100000, guid: 27d467dbaed5a8d47ad9abbfceb98a66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Sword03SM_59Mat
+    second: {fileID: 2100000, guid: 99ac0d8b7fbb7774ea1c2159de7faa53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Sword04SM_61Mat
+    second: {fileID: 2100000, guid: e9d8560ff11d2314b917226757de4938, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Wand01SM_63Mat
+    second: {fileID: 2100000, guid: d140fc6e80c312549aa637ddbe3faa03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prop_Wand02SM_65Mat
+    second: {fileID: 2100000, guid: 17b69dfd3c407ca489bee02091e5193e, type: 2}
   materials:
     materialImportMode: 1
     materialName: 2
@@ -34,7 +134,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.008
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -81,7 +181,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.008
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

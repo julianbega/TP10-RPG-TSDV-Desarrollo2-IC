@@ -12,6 +12,8 @@ public class worldItem : MonoBehaviour, IPickable
     {
         ID = _ID;
         Amount = _Amount;
+        GetComponent<MeshFilter>().mesh = GameplayManager.GetInstance().GetItemFromID(ID).mesh;
+        GetComponent<Renderer>().material = GameplayManager.GetInstance().GetItemFromID(ID).worldMaterial;
     }
 
     Slot IPickable.PickUp()

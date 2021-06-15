@@ -5,10 +5,11 @@ using UnityEngine;
 public class GameplayManager : MonoBehaviour
 {
 
+    [Header("Items")]
     [SerializeField] ItemList allItems;
-
+    [SerializeField] GameObject dropTemplate;
+    [Space(10)]
     [SerializeField] PlayerController playerController;
-
     [SerializeField] UiInventory uiInventory;
 
     static private GameplayManager instance;
@@ -54,6 +55,11 @@ public class GameplayManager : MonoBehaviour
     public GameObject GetPlayer()
     {
         return playerController.gameObject;
+    }
+
+    public GameObject GetDropTemplate()
+    {
+        return dropTemplate;
     }
 
     void ToggleInventory()
@@ -121,7 +127,7 @@ public class GameplayManager : MonoBehaviour
         playerController.gameObject.GetComponent<Inventory>().SetSaveSlots(newList);
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         SaveJson();
     }
