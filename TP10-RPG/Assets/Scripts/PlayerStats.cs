@@ -31,6 +31,7 @@ public class PlayerStats : MonoBehaviour
     }
     public virtual void Die()
     {
+        GetComponent<Animator>().SetTrigger("Die");
         Debug.Log(transform.name + "died.");
     }
 }

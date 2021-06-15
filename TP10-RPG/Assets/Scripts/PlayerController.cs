@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, IHitable
     [SerializeField] private Camera mainCamera;
     [SerializeField] private LayerMask layer;
     CharacterController controller;
+    Animator anim;
     PlayerStats stats;
     Vector3 playerVelocity;
 
@@ -21,6 +22,11 @@ public class PlayerController : MonoBehaviour, IHitable
     public Action OnInventoryOpen;
 
     bool pausedInput = false;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void Start()
     {
@@ -34,6 +40,7 @@ public class PlayerController : MonoBehaviour, IHitable
         {
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             controller.Move(move * Time.deltaTime * playerSpeed);
+            anim.SetFloat("MoveSpeed", Mathf.Abs(move.x) + Mathf.Abs(move.z));
 
             if (move != Vector3.zero)
             {
@@ -63,6 +70,7 @@ public class PlayerController : MonoBehaviour, IHitable
     }
     void Attack()
     {
+        anim.SetTrigger("Attack");
         Collider[] hitColliders = Physics.OverlapSphere(transform.position + (attackRadius*transform.forward), attackRadius);
         foreach (var hitCollider in hitColliders)
         {
@@ -101,6 +109,7 @@ public class PlayerController : MonoBehaviour, IHitable
     }
     IEnumerator MeteorCast()
     {
+        anim.SetTrigger("Cast");
         GameObject castspell;
         Debug.Log("castea lluvia de metoritos");
         castspell = Instantiate(cast);
