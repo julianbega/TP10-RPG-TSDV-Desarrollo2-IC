@@ -14,7 +14,7 @@ public class Equipment : MonoBehaviour
     }*/
 
     [SerializeField] int weaponSlotsAmount = 4;
-    [SerializeField] List<Slot> currentEquipment = null;
+    List<Slot> currentEquipment = new List<Slot>();
     Inventory inventory;
 
     private void Awake()

@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] List<Slot> CurrentItems;
     [SerializeField] int size = 10;
-    Equipment equipmentComponent;
+    List<Slot> CurrentItems = new List<Slot>();
+    Equipment equipment;
 
     private void Awake()
     {
-        equipmentComponent = GetComponent<Equipment>();
+        equipment = GetComponent<Equipment>();
         for (int i = 0; i < size; i++)
         {
             Slot newSlot = new Slot();
@@ -99,7 +99,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            CurrentItems[slotPos] = equipmentComponent.SwapEquipment(CurrentItems[slotPos]);
+            CurrentItems[slotPos] = equipment.SwapEquipment(CurrentItems[slotPos]);
         }
         return true;
     }
@@ -193,4 +193,40 @@ public class Inventory : MonoBehaviour
     {
         return CurrentItems;
     }
+
+    public List<Slot> GetSaveSlots()
+    {
+        List<Slot> newList = new List<Slot>();
+
+        for (int i = 0; i < equipment.GetEquipmentList().Count; i++)
+        {
+            newList.Add(equipment.GetEquipmentList()[i]);
+        }
+
+        for (int i = 0; i < GetInventoryList().Count; i++)
+        {
+            newList.Add(GetInventoryList()[i]);
+        }
+        return newList;
+    }
+
+    public void SetSaveSlots(List<Slot> newList)
+    {
+        int equipmentTotalSlots = equipment.GetEquipmentAmount();
+
+        List<Slot> equipmentList = new List<Slot>();
+        for (int i = 0; i < equipmentTotalSlots; i++)
+        {
+            equipmentList.Add(newList[i]);
+        }
+        equipment.SetNewEquipment(equipmentList);
+
+        List<Slot> itemsList = new List<Slot>();
+        for (int i = equipmentTotalSlots; i < newList.Count; i++)
+        {
+            itemsList.Add(newList[i]);
+        }
+        SetNewInventory(itemsList);
+    }
+
 }

@@ -7,11 +7,15 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField] ItemList allItems;
 
-    UIPlayer player;
+    [SerializeField] PlayerController playerController;
+
+    [SerializeField] UiInventory uiInventory;
 
     static private GameplayManager instance;
 
     static public GameplayManager GetInstance() { return instance; }
+
+    bool inventoryOpen = false;
 
     string savePath = "SaveFile.json";
 
@@ -30,6 +34,7 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         LoadJson();
+        playerController.OnInventoryOpen += ToggleInventory;
     }
     public int GetRandomItemID()
     {
@@ -46,14 +51,21 @@ public class GameplayManager : MonoBehaviour
         return allItems.List[id];
     }
 
-    public void SetPlayer(UIPlayer p)
+    public GameObject GetPlayer()
     {
-        player = p;
+        return playerController.gameObject;
     }
+
+    void ToggleInventory()
+    {
+        inventoryOpen = !inventoryOpen;
+        uiInventory.ToggleInventory(inventoryOpen);
+    }
+
 
     public void SaveJson()
     {
-        List<Slot> playerItems = player.GetSaveSlots();
+        List<Slot> playerItems = playerController.gameObject.GetComponent<Inventory>().GetSaveSlots();
         string json = "";
         for (int i = 0; i < playerItems.Count; i++)
         {
@@ -106,7 +118,7 @@ public class GameplayManager : MonoBehaviour
                 newList.Add(newSlot);
             }
         }
-        player.SetSaveSlots(newList);
+        playerController.gameObject.GetComponent<Inventory>().SetSaveSlots(newList);
     }
 
     void OnDestroy()

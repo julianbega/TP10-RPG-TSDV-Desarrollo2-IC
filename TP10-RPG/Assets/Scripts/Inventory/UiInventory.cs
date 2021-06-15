@@ -7,6 +7,11 @@ using Image = UnityEngine.UI.Image;
 
 public class UiInventory : MonoBehaviour
 {
+
+    [Header("Main UI Objects")]
+    [SerializeField] GameObject uICameraPlayerGO;
+    [SerializeField] GameObject inventoryPanel;
+
     public Action RefreshAllButtonsEvent;
     public Sprite[] defaultSprites;
     Inventory.SortType sortBy = Inventory.SortType.Type;
@@ -17,7 +22,7 @@ public class UiInventory : MonoBehaviour
     public Image toolTip;
     public Inventory inventory;
     public Equipment equipment;
-    public GameObject player;
+    public GameObject playerUI;
 
     public Image slotAux;
     public RectTransform content;
@@ -33,17 +38,21 @@ public class UiInventory : MonoBehaviour
         sortBDrop = sortBRect.GetComponent<TMP_Dropdown>();
     }
 
-    void Start()    //   Carrera de start con Inventory
+    public void ToggleInventory(bool open)
     {
-        Invoke(nameof(IniciarInventarioUI), 0);       // ver como iniciar despues de la lógica de inventario.
-
-        for (int i = 0; i <= (int)Inventory.SortType.Level; i++)
+        uICameraPlayerGO.SetActive(open);
+        inventoryPanel.SetActive(open);
+        if (open)
         {
-            sortBDrop.options[i].text = nameSortBy[i];
+            ReStartInventory();
+            for (int i = 0; i <= (int)Inventory.SortType.Level; i++)
+            {
+                sortBDrop.options[i].text = nameSortBy[i];
+            }
         }
     }
 
-    void IniciarInventarioUI()
+    void ReStartInventory()
     {
         CreateButtonsSlots();
         ResizeContent();
@@ -248,16 +257,16 @@ public class UiInventory : MonoBehaviour
     public void SetPositionX()
     {
         mouseCurrentPosX = Input.mousePosition.x;
-        playerCurrentRotY = player.transform.eulerAngles.y;
+        playerCurrentRotY = playerUI.transform.eulerAngles.y;
     }
 
     public void Rotate()
     {
         float auxPosX = mouseCurrentPosX - Input.mousePosition.x;
 
-        Vector3 auxEuler = player.transform.eulerAngles;
+        Vector3 auxEuler = playerUI.transform.eulerAngles;
         auxEuler.y = playerCurrentRotY + auxPosX;
 
-        player.transform.eulerAngles = auxEuler;
+        playerUI.transform.eulerAngles = auxEuler;
     }
 }

@@ -32,56 +32,16 @@ public class UIPlayer : MonoBehaviour
         Arms
     }
 
-    private void Awake()
-    {
-        equipment = GetComponent<Equipment>();
-        inventory = GetComponent<Inventory>();
-    }
-
     private void Start()
     {
-        GameplayManager.GetInstance().SetPlayer(this);
+        inventory = GameplayManager.GetInstance().GetPlayer().GetComponent<Inventory>();
+        equipment = GameplayManager.GetInstance().GetPlayer().GetComponent<Equipment>();
         OnRefreshMeshAsStatic += UpdateMesh;
     }
 
     void OnDestroy()
     {
         OnRefreshMeshAsStatic -= UpdateMesh;
-    }
-
-    public List<Slot> GetSaveSlots()
-    {
-        List<Slot> newList = new List<Slot>();
-
-        for (int i = 0; i < equipment.GetEquipmentList().Count; i++)
-        {
-            newList.Add(equipment.GetEquipmentList()[i]);
-        }
-
-        for (int i = 0; i < inventory.GetInventoryList().Count; i++)
-        {
-            newList.Add(inventory.GetInventoryList()[i]);
-        }
-        return newList;
-    }
-
-    public void SetSaveSlots(List<Slot> newList)
-    {
-        int equipmentTotalSlots = equipment.GetEquipmentAmount();
-
-        List<Slot> equipmentList = new List<Slot>();
-        for (int i = 0; i < equipmentTotalSlots; i++)
-        {
-            equipmentList.Add(newList[i]);
-        }
-        equipment.SetNewEquipment(equipmentList);
-
-        List<Slot> itemsList = new List<Slot>();
-        for (int i = equipmentTotalSlots; i < newList.Count; i++)
-        {
-            itemsList.Add(newList[i]);
-        }
-        inventory.SetNewInventory(itemsList);
     }
 
     public void UpdateMesh()

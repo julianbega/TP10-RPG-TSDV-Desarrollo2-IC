@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -16,7 +17,9 @@ public class PlayerController : MonoBehaviour, IHitable
     float playerSpeed = 2.0f;
     float attackRadius = 3.0f;
     float pickUpRadius = 5.0f;
-    
+
+    public Action OnInventoryOpen;
+
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -35,6 +38,10 @@ public class PlayerController : MonoBehaviour, IHitable
         if (Input.GetKeyDown(KeyCode.E))
         {
             PickUp();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            OnInventoryOpen();
         }
         if (Input.GetButtonDown("Fire1"))
         {
