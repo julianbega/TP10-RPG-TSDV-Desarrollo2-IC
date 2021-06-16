@@ -97,14 +97,7 @@ public class EnemyController : MonoBehaviour, IHitable
         if (dropRate > chance)
         {
             GameplayManager gm = GameplayManager.GetInstance();
-            int itemID = gm.GetRandomItemID();
-            int amount = 1;
-            if(gm.GetItemFromID(itemID).maxStack > 1)
-            {
-                amount = UnityEngine.Random.Range(1, gm.GetItemFromID(itemID).maxStack + 1);
-            }
-            GameObject go = Instantiate(gm.GetDropTemplate(), transform.position, Quaternion.identity);
-            go.GetComponent<worldItem>().SetItem(itemID, amount);
+            gm.CreateRandomWorldItem(transform.position);
         }
         anim.SetTrigger("Die");
         agent.enabled = false;

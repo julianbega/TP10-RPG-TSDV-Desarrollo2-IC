@@ -68,6 +68,25 @@ public class GameplayManager : MonoBehaviour
         uiInventory.ToggleInventory(inventoryOpen);
     }
 
+    public void CreateRandomWorldItem(Vector3 pos)
+    {
+        int itemID = GetRandomItemID();
+        int amount = 1;
+        if (GetItemFromID(itemID).maxStack > 1)
+        {
+            amount = UnityEngine.Random.Range(1, GetItemFromID(itemID).maxStack + 1);
+        }
+        GameObject go = Instantiate(GetDropTemplate(), pos, Quaternion.identity);
+        go.GetComponent<worldItem>().SetItem(itemID, amount);
+    }
+
+    public void CreateWorldItem(Vector3 pos, Slot slot)
+    {
+        int itemID = slot.ID;
+        int amount = slot.amount;
+        GameObject go = Instantiate(GetDropTemplate(), pos, Quaternion.identity);
+        go.GetComponent<worldItem>().SetItem(itemID, amount);
+    }
 
     public void SaveJson()
     {

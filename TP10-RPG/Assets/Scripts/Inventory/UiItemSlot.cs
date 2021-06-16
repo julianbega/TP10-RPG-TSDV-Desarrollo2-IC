@@ -106,7 +106,7 @@ public class UiItemSlot : MonoBehaviour
         {
             if (playerList == PlayerList.Inventory)
             {
-                inv.inventory.DeleteItem(indexList);
+                inv.inventory.DropItem(indexList);
                 Refresh(playerList);
             }
         }

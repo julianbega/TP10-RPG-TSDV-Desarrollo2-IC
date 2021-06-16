@@ -7,7 +7,6 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] List<EnemyController> enemies;
 
-    // Start is called before the first frame update
     void Start()
     {
         foreach (var enemy in enemies)
@@ -15,13 +14,6 @@ public class EnemyManager : MonoBehaviour
             enemy.OnDeath += RemoveEnemy;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     void RemoveEnemy(EnemyController e)
     {

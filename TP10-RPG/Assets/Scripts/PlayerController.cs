@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour, IHitable
     {
         if (!pausedInput)
         {
+
+            if (lockedAttack) return;
+
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             controller.Move(move * Time.deltaTime * playerSpeed);
             anim.SetFloat("MoveSpeed", Mathf.Abs(move.x) + Mathf.Abs(move.z));
@@ -53,13 +56,10 @@ public class PlayerController : MonoBehaviour, IHitable
             }
             if (Input.GetButtonDown("Fire1"))
             {
-                if (lockedAttack) return;
-                Debug.Log("ataca");
                 Attack();
             }
             if (Input.GetButtonDown("Fire2"))
             {
-                if (lockedAttack) return;
                 StartCoroutine(MeteorCast());
             }
         }

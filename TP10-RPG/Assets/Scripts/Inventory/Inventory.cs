@@ -59,10 +59,11 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public void DeleteItem(int slotPos)
+    public void DropItem(int slotPos)
     {
         if (!CurrentItems[slotPos].IsEmpty())
         {
+            GameplayManager.GetInstance().CreateWorldItem(transform.position, CurrentItems[slotPos]);
             CurrentItems[slotPos].EmptySlot();
         }
     }
