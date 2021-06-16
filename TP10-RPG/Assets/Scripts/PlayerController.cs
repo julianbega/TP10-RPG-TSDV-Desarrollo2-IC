@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour, IHitable
@@ -17,14 +18,14 @@ public class PlayerController : MonoBehaviour, IHitable
     [SerializeField] int meteoritesWaves = 5;
     [SerializeField] float maxMeteoriteCooldown = 30f;
     float currentMeteoriteCooldown = -1;
+    NavMeshAgent agent;
 
-    CharacterController controller;
+    Camera cam;
     Animator anim;
     PlayerStats stats;
     bool inventoryIsOpen = false;
-    Vector3 playerVelocity;
 
-    float playerSpeed = 2.0f;
+    public float playerSpeed = 2.0f;
     float attackRadius = 3.0f;
     float pickUpRadius = 5.0f;
 
@@ -35,13 +36,16 @@ public class PlayerController : MonoBehaviour, IHitable
     bool lockedAttack = false;
 
     private void Awake()
-    {
+    {        
         anim = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        controller = gameObject.GetComponent<CharacterController>();
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = playerSpeed;
+        cam = Camera.main;
         stats = gameObject.GetComponent<PlayerStats>();
     }
 
@@ -54,8 +58,25 @@ public class PlayerController : MonoBehaviour, IHitable
         if (!pausedInput)
         {
 
+            if (agent.remainingDistance <= 0.1)
+            {
+                Debug.Log("remaining distance = " + agent.remainingDistance);
+                anim.SetFloat("MoveSpeed", 0);
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if(Physics.Raycast(ray, out hit, 100, groundLayer))
+                {
+                    MoveToPoint(hit.point);
+                    anim.SetFloat("MoveSpeed", 1);
+                }
+            }
+
             if (lockedAttack) return;
 
+            /*
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             controller.Move(move * Time.deltaTime * playerSpeed);
             anim.SetFloat("MoveSpeed", Mathf.Abs(move.x) + Mathf.Abs(move.z));
@@ -63,14 +84,17 @@ public class PlayerController : MonoBehaviour, IHitable
             if (move != Vector3.zero)
             {
                 gameObject.transform.forward = move;
-            }
+            }*/
+
+
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                PickUp();
-            }
-            if (Input.GetButtonDown("Fire1"))
-            {
                 Attack();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickUp();
             }
             if (Input.GetButtonDown("Fire2"))
             {
@@ -162,6 +186,11 @@ public class PlayerController : MonoBehaviour, IHitable
     void UnlockAttack()
     {
         lockedAttack = false;
+    }
+
+    public void MoveToPoint(Vector3 point)
+    {
+        agent.SetDestination(point);
     }
 }
 

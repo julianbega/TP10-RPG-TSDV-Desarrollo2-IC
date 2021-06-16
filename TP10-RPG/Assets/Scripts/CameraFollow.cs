@@ -20,11 +20,11 @@ public class CameraFollow : MonoBehaviour
     {
         currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.D))
         {
             yawInput -= yawSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.A))
         {
             yawInput += yawSpeed * Time.deltaTime;
         }
