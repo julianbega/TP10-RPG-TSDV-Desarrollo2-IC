@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour, IHitable
     CharacterController controller;
     Animator anim;
     PlayerStats stats;
+    bool inventoryIsOpen = false;
     Vector3 playerVelocity;
 
     float playerSpeed = 2.0f;
@@ -83,10 +84,16 @@ public class PlayerController : MonoBehaviour, IHitable
 
         if (Input.GetKeyDown(KeyCode.I))
         {
+            inventoryIsOpen = !inventoryIsOpen;
             pausedInput = !pausedInput;
             OnInventoryOpen();
         }
-
+        if (Input.GetKeyDown(KeyCode.Escape) && inventoryIsOpen)
+        {
+            inventoryIsOpen = !inventoryIsOpen;
+            pausedInput = !pausedInput;
+            OnInventoryOpen();
+        }
     }
     void Attack()
     {
