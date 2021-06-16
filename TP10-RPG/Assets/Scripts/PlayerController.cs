@@ -7,10 +7,16 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour, IHitable
 {
 
-    [Header("Meteor")]
-    [SerializeField] GameObject meteorprefab;
+    [Header("Meteorites")]
+    [SerializeField] GameObject meteoritePrefab;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] float spawnAltitude = 10f;
+    [SerializeField] int meteoritesPerWave = 10;
+    [SerializeField] float meteoritesTimeBetweenWaves = 1f;
+    [SerializeField] float meteoriteWaveMaxSize = 1f;
+    [SerializeField] int meteoritesWaves = 5;
+    [SerializeField] float maxMeteoriteCooldown = 30f;
+    float currentMeteoriteCooldown = -1;
 
     CharacterController controller;
     Animator anim;
@@ -63,7 +69,15 @@ public class PlayerController : MonoBehaviour, IHitable
             }
             if (Input.GetButtonDown("Fire2"))
             {
-                StartCoroutine(MeteorCast());
+                if(currentMeteoriteCooldown < 0)
+                {
+                    currentMeteoriteCooldown = maxMeteoriteCooldown;
+                    StartCoroutine(MeteorCast());
+                }
+            }
+            if(currentMeteoriteCooldown > 0)
+            {
+                currentMeteoriteCooldown -= Time.deltaTime;
             }
         }
 
@@ -124,8 +138,14 @@ public class PlayerController : MonoBehaviour, IHitable
         if (Physics.Raycast(ray, out hit, float.MaxValue,groundLayer))
         {
             MeteoriteSpawnPos = new Vector3(hit.point.x, hit.point.y + spawnAltitude, hit.point.z);
-            yield return new WaitForSeconds(2);
-            Instantiate(meteorprefab, MeteoriteSpawnPos, Quaternion.identity);
+            for (int i = 0; i < meteoritesWaves; i++)
+            {
+                yield return new WaitForSeconds(meteoritesTimeBetweenWaves);
+                for (int j = 0; j < meteoritesPerWave; j++)
+                {
+                    Instantiate(meteoritePrefab, MeteoriteSpawnPos + UnityEngine.Random.insideUnitSphere * meteoriteWaveMaxSize, Quaternion.identity);
+                }
+            }
         }      
     }
     void UnlockAttack()
