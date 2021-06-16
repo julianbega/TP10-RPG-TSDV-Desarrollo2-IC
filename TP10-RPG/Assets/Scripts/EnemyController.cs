@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -24,6 +25,8 @@ public class EnemyController : MonoBehaviour, IHitable
     Animator anim;
 
     Collider col;
+
+    public Action<EnemyController> OnDeath;
 
     private void Awake()
     {
@@ -98,7 +101,7 @@ public class EnemyController : MonoBehaviour, IHitable
             int amount = 1;
             if(gm.GetItemFromID(itemID).maxStack > 1)
             {
-                amount = Random.Range(1, gm.GetItemFromID(itemID).maxStack + 1);
+                amount = UnityEngine.Random.Range(1, gm.GetItemFromID(itemID).maxStack + 1);
             }
             GameObject go = Instantiate(gm.GetDropTemplate(), transform.position, Quaternion.identity);
             go.GetComponent<worldItem>().SetItem(itemID, amount);
@@ -107,5 +110,6 @@ public class EnemyController : MonoBehaviour, IHitable
         agent.enabled = false;
         col.enabled = false;
         Destroy(gameObject, deathTimer);
+        OnDeath(this);
     }
 }
