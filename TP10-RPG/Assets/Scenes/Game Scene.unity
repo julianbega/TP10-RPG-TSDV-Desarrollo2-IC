@@ -1328,6 +1328,11 @@ PrefabInstance:
       objectReference: {fileID: 164416, guid: 8aeb2c0224fe763499eed3ec0587162b, type: 3}
     - target: {fileID: 135671473819893445, guid: 5b05c66f9422f5041b007a7312362edc,
         type: 3}
+      propertyPath: meteoritePrefab
+      value: 
+      objectReference: {fileID: 164416, guid: 8aeb2c0224fe763499eed3ec0587162b, type: 3}
+    - target: {fileID: 135671473819893445, guid: 5b05c66f9422f5041b007a7312362edc,
+        type: 3}
       propertyPath: groundLayer.m_Bits
       value: 256
       objectReference: {fileID: 0}
