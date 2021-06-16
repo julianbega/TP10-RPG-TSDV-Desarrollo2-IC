@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour, IHitable
 {
     public GameObject cast;
     public GameObject meteorprefab;
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private LayerMask layer;
     CharacterController controller;
     Animator anim;
@@ -22,6 +21,8 @@ public class PlayerController : MonoBehaviour, IHitable
     public Action OnInventoryOpen;
 
     bool pausedInput = false;
+
+    bool lockedAttack = false;
 
     private void Awake()
     {
@@ -52,12 +53,14 @@ public class PlayerController : MonoBehaviour, IHitable
             }
             if (Input.GetButtonDown("Fire1"))
             {
+                if (lockedAttack) return;
                 Debug.Log("ataca");
                 Attack();
             }
             if (Input.GetButtonDown("Fire2"))
             {
-                StartCoroutine("MeteorCast");
+                if (lockedAttack) return;
+                StartCoroutine(MeteorCast());
             }
         }
 
@@ -71,6 +74,7 @@ public class PlayerController : MonoBehaviour, IHitable
     void Attack()
     {
         anim.SetTrigger("Attack");
+        lockedAttack = true;
         Collider[] hitColliders = Physics.OverlapSphere(transform.position + (attackRadius*transform.forward), attackRadius);
         foreach (var hitCollider in hitColliders)
         {
@@ -110,20 +114,25 @@ public class PlayerController : MonoBehaviour, IHitable
     IEnumerator MeteorCast()
     {
         anim.SetTrigger("Cast");
-        GameObject castspell;
+        lockedAttack = true;
+        //GameObject castspell;
         Debug.Log("castea lluvia de metoritos");
-        castspell = Instantiate(cast);
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        //castspell = Instantiate(cast);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycasthit,float.MaxValue,layer))
         {
             raycasthit.point = new Vector3(raycasthit.point.x, raycasthit.point.y + 0.2f, raycasthit.point.z);
-            castspell.transform.position = raycasthit.point;
+            //castspell.transform.position = raycasthit.point;
         }
         yield return new WaitForSeconds(2);
-        GameObject meteor;
-        meteor= Instantiate(meteorprefab, new Vector3(castspell.transform.position.x, castspell.transform.position.y, castspell.transform.position.z), Quaternion.identity);
-        Destroy(castspell);
+        //GameObject meteor;
+        //meteor= Instantiate(meteorprefab, new Vector3(castspell.transform.position.x, castspell.transform.position.y, castspell.transform.position.z), Quaternion.identity);
+        //Destroy(castspell);
         //castea el meteorito
+    }
+    void UnlockAttack()
+    {
+        lockedAttack = false;
     }
 }
 
