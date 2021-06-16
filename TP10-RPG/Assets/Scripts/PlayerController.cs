@@ -6,9 +6,12 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour, IHitable
 {
-    public GameObject cast;
-    public GameObject meteorprefab;
-    [SerializeField] private LayerMask layer;
+
+    [Header("Meteor")]
+    [SerializeField] GameObject meteorprefab;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] float spawnAltitude = 10f;
+
     CharacterController controller;
     Animator anim;
     PlayerStats stats;
@@ -115,20 +118,15 @@ public class PlayerController : MonoBehaviour, IHitable
     {
         anim.SetTrigger("Cast");
         lockedAttack = true;
-        //GameObject castspell;
-        Debug.Log("castea lluvia de metoritos");
-        //castspell = Instantiate(cast);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycasthit,float.MaxValue,layer))
+        RaycastHit hit;
+        Vector3 MeteoriteSpawnPos;
+        if (Physics.Raycast(ray, out hit, float.MaxValue,groundLayer))
         {
-            raycasthit.point = new Vector3(raycasthit.point.x, raycasthit.point.y + 0.2f, raycasthit.point.z);
-            //castspell.transform.position = raycasthit.point;
-        }
-        yield return new WaitForSeconds(2);
-        //GameObject meteor;
-        //meteor= Instantiate(meteorprefab, new Vector3(castspell.transform.position.x, castspell.transform.position.y, castspell.transform.position.z), Quaternion.identity);
-        //Destroy(castspell);
-        //castea el meteorito
+            MeteoriteSpawnPos = new Vector3(hit.point.x, hit.point.y + spawnAltitude, hit.point.z);
+            yield return new WaitForSeconds(2);
+            Instantiate(meteorprefab, MeteoriteSpawnPos, Quaternion.identity);
+        }      
     }
     void UnlockAttack()
     {
