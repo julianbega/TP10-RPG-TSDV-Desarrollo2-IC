@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1328,6 +1328,11 @@ PrefabInstance:
       objectReference: {fileID: 164416, guid: 8aeb2c0224fe763499eed3ec0587162b, type: 3}
     - target: {fileID: 135671473819893445, guid: 5b05c66f9422f5041b007a7312362edc,
         type: 3}
+      propertyPath: spawnAltitude
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 135671473819893445, guid: 5b05c66f9422f5041b007a7312362edc,
+        type: 3}
       propertyPath: meteoritePrefab
       value: 
       objectReference: {fileID: 164416, guid: 8aeb2c0224fe763499eed3ec0587162b, type: 3}
@@ -1335,6 +1340,21 @@ PrefabInstance:
         type: 3}
       propertyPath: groundLayer.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 135671473819893445, guid: 5b05c66f9422f5041b007a7312362edc,
+        type: 3}
+      propertyPath: maxMeteoriteCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135671473819893445, guid: 5b05c66f9422f5041b007a7312362edc,
+        type: 3}
+      propertyPath: meteoriteWaveMaxSize
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 135671473819893445, guid: 5b05c66f9422f5041b007a7312362edc,
+        type: 3}
+      propertyPath: meteoritesTimeBetweenWaves
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 135671473819893447, guid: 5b05c66f9422f5041b007a7312362edc,
         type: 3}

@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour, IHitable
     PlayerStats stats;
     bool inventoryIsOpen = false;
 
+    [Header("Movement")]
     public float playerSpeed = 2.0f;
     float attackRadius = 3.0f;
     float pickUpRadius = 5.0f;
@@ -60,7 +61,6 @@ public class PlayerController : MonoBehaviour, IHitable
 
             if (agent.remainingDistance <= 0.1)
             {
-                Debug.Log("remaining distance = " + agent.remainingDistance);
                 anim.SetFloat("MoveSpeed", 0);
             }
             if (Input.GetMouseButtonDown(0))
