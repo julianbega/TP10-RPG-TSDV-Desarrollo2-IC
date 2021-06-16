@@ -15,8 +15,7 @@ MonoBehaviour:
   itemName: Mana Potion
   icon: {fileID: 21300000, guid: 93125ac9df95ec542bc533408addf1ee, type: 3}
   mesh: {fileID: 4300000, guid: da8a393ba24fc6f49842d87b0937b84d, type: 3}
-  worldPrefab: {fileID: 6031716113068538444, guid: adb066c1aa64c604d905059424a415ef,
-    type: 3}
+  worldMaterial: {fileID: 2100000, guid: 680c9da3eaec8824ebef5bf8deade2ef, type: 2}
   maxStack: 100
   level: 1
   weight: 7
