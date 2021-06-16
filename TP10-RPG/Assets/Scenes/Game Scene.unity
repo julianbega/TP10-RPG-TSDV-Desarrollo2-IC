@@ -514,9 +514,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885636051b6eb6448bb5f4e6ad736c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1330880658}
-  distanceY: 8
-  distanceZ: 12
+  target: {fileID: 1330880666}
+  offset: {x: 0, y: 1, z: -1.2}
+  pitch: 2
+  yawSpeed: 100
 --- !u!4 &567139170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2710980483738283774, guid: 437c85a088c708c448a99c3ae01d7905,
@@ -1196,6 +1197,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291e5b7c3cf93f14da8f96199982051f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1330880666 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 135671473819893447, guid: 5b05c66f9422f5041b007a7312362edc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1424781866}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &1330880667
 Rigidbody:
   m_ObjectHideFlags: 0

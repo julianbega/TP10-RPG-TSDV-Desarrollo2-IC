@@ -47,6 +47,10 @@ public class PlayerController : MonoBehaviour, IHitable
 
     private void Update()
     {
+        if (transform.position.y > 0)
+        {
+            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        }
         if (!pausedInput)
         {
 
@@ -60,7 +64,7 @@ public class PlayerController : MonoBehaviour, IHitable
             {
                 gameObject.transform.forward = move;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 PickUp();
             }
@@ -70,13 +74,13 @@ public class PlayerController : MonoBehaviour, IHitable
             }
             if (Input.GetButtonDown("Fire2"))
             {
-                if(currentMeteoriteCooldown < 0)
+                if (currentMeteoriteCooldown < 0)
                 {
                     currentMeteoriteCooldown = maxMeteoriteCooldown;
                     StartCoroutine(MeteorCast());
                 }
             }
-            if(currentMeteoriteCooldown > 0)
+            if (currentMeteoriteCooldown > 0)
             {
                 currentMeteoriteCooldown -= Time.deltaTime;
             }
@@ -99,7 +103,7 @@ public class PlayerController : MonoBehaviour, IHitable
     {
         anim.SetTrigger("Attack");
         lockedAttack = true;
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + (attackRadius*transform.forward), attackRadius);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + (attackRadius * transform.forward), attackRadius);
         foreach (var hitCollider in hitColliders)
         {
             IHitable ihitable = hitCollider.GetComponent<IHitable>();
@@ -113,13 +117,13 @@ public class PlayerController : MonoBehaviour, IHitable
     void PickUp()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, pickUpRadius);
-        foreach(var hitCollider in hitColliders)
+        foreach (var hitCollider in hitColliders)
         {
             IPickable pickable = hitCollider.GetComponent<IPickable>();
-            if(pickable != null)
+            if (pickable != null)
             {
                 Slot item = pickable.PickUp();
-                if(GetComponent<Inventory>().AddNewItem(item.ID, item.amount))
+                if (GetComponent<Inventory>().AddNewItem(item.ID, item.amount))
                 {
                     Destroy(hitCollider.gameObject);
                 }
@@ -142,7 +146,7 @@ public class PlayerController : MonoBehaviour, IHitable
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Vector3 MeteoriteSpawnPos;
-        if (Physics.Raycast(ray, out hit, float.MaxValue,groundLayer))
+        if (Physics.Raycast(ray, out hit, float.MaxValue, groundLayer))
         {
             MeteoriteSpawnPos = new Vector3(hit.point.x, hit.point.y + spawnAltitude, hit.point.z);
             for (int i = 0; i < meteoritesWaves; i++)
@@ -153,7 +157,7 @@ public class PlayerController : MonoBehaviour, IHitable
                     Instantiate(meteoritePrefab, MeteoriteSpawnPos + UnityEngine.Random.insideUnitSphere * meteoriteWaveMaxSize, Quaternion.identity);
                 }
             }
-        }      
+        }
     }
     void UnlockAttack()
     {
