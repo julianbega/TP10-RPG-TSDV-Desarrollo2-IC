@@ -129,6 +129,9 @@ public class GameplayManager : MonoBehaviour
 
     void OnDisable()
     {
-        SaveJson();
+        if(playerController)
+        {
+            SaveJson();
+        }
     }
 }
